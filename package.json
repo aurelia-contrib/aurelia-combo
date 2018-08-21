@@ -1,6 +1,6 @@
 {
   "name": "aurelia-combo",
-  "description": "An Aurelia plugin for easy keyboard combo shortcuts",
+  "description": "An Aurelia plugin for easy keyboard combo short-cuts",
   "version": "0.1.0",
   "keywords": [
     "aurelia",
@@ -18,8 +18,10 @@
   "license": "MIT",
   "author": "Chunpeng Huo",
   "main": "dist/index.js",
+  "typings": "index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts"
   ],
   "dependencies": {
     "keymaster": "^1.6.2"

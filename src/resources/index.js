@@ -42,15 +42,15 @@ export function configure() {
   };
 }
 
-export function combo(...combos) {
-  if (!combos || !combos.length) return;
+export function combo(...shortcuts) {
+  if (!shortcuts || !shortcuts.length) return;
 
   return function(target, key, descriptor) {
     if (typeof descriptor.value !== 'function') {
       throw new Error('@combo(...) can only decorate a method');
     }
 
-    descriptor.value.combo = combos.join(', ');
+    descriptor.value.combo = shortcuts.join(', ');
     return descriptor;
   };
 }
