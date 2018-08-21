@@ -19,12 +19,12 @@ It uses [keymaster](https://github.com/madrobby/keymaster) underneath to support
 ```js
 import {combo} from 'aurelia-combo';
 export class MyVm {
-  @combo('ctrl+f', 'command+f')
+  @combo('ctrl+f', 'command+f') // array of short-cuts
   findIt(e) {
     console.log('findIt');
   }
 
-  @combo('ctrl+c, command+c')
+  @combo('ctrl+c, command+c') // or a string of all, keymaster understands
   copyIt(e) {
     console.log('copyIt');
   }
