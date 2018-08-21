@@ -1,0 +1,95 @@
+{
+  "name": "aurelia-combo",
+  "description": "An Aurelia plugin for easy keyboard combo shortcuts",
+  "version": "0.1.0",
+  "keywords": [
+    "aurelia",
+    "keymaster",
+    "shortcut"
+  ],
+  "homepage": "https://github.com/aurelia-contrib/aurelia-combo",
+  "bugs": {
+    "url": "https://github.com/aurelia-contrib/aurelia-combo/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/aurelia-contrib/aurelia-combo"
+  },
+  "license": "MIT",
+  "author": "Chunpeng Huo",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "keymaster": "^1.6.2"
+  },
+  "peerDependencies": {},
+  "devDependencies": {
+    "aurelia-animator-css": "^1.0.4",
+    "aurelia-bootstrapper": "^2.2.0",
+    "aurelia-cli": "huochunpeng/cli#at29",
+    "aurelia-testing": "^1.0.0-beta.4.0.0",
+    "aurelia-tools": "^2.0.0",
+    "babel-eslint": "^8.2.2",
+    "babel-plugin-syntax-flow": "^6.18.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-es2015-modules-amd": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "bluebird": "^3.5.1",
+    "browser-sync": "^2.23.6",
+    "connect-history-api-fallback": "^1.5.0",
+    "debounce": "^1.1.0",
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-changed-in-place": "^2.3.0",
+    "gulp-eslint": "^4.0.2",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-watch": "^5.0.0",
+    "jasmine-core": "^3.1.0",
+    "jquery": "^3.3.1",
+    "karma": "^2.0.0",
+    "karma-babel-preprocessor": "^7.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.1",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-sourcemap-loader": "^0.3.7",
+    "minimatch": "^3.0.4",
+    "phantomjs": "^2.1.7",
+    "requirejs": "^2.3.5",
+    "standard-changelog": "^2.0.0",
+    "text": "github:requirejs/text#latest",
+    "through2": "^2.0.3",
+    "vinyl-fs": "^3.0.2"
+  },
+  "aurelia": {
+    "import": {
+      "dependencies": [
+        "keymaster",
+        "aurelia-combo"
+      ],
+      "tutorial": [
+        "load plugin in your main file, aurelia.use.plugin('aurelia-combo')",
+        "in your component, use decorator @combo('ctrl+f', 'command+f') or @combo('ctrl+f, command+f') on any method"
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "eslint src",
+    "pretest": "npm run lint",
+    "test": "au test",
+    "preversion": "npm test",
+    "version": "standard-changelog && git add CHANGELOG.md",
+    "prepare": "au build-plugin",
+    "postversion": "git push && git push --tags && npm publish"
+  }
+}
