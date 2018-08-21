@@ -14,7 +14,7 @@ In your app main.js file
 aurelia.use.plugin(PLATFORM.moduleName('aurelia-combo'));
 ```
 
-It use [keymaster](https://github.com/madrobby/keymaster) underneath to support keyboard short-cut. Read it to understand the supported short-cut format.
+It uses [keymaster](https://github.com/madrobby/keymaster) underneath to support keyboard short-cut. Read it to understand the supported short-cut format.
 
 ```js
 import {combo} from 'aurelia-combo';
@@ -54,7 +54,7 @@ export class MyVm {
 
 ## Notes
 
-All shortcuts are attached globally to HTML document, the good practice is to use `@combo` on component loaded by router.
+All short-cuts are attached globally to HTML document, the good practice is to use `@combo` on component loaded by router.
 
 The unbind in detached removes all listeners for that short-cut. This means you don't want two components on screen handling same short-cut.
 
