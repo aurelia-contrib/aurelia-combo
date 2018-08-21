@@ -17,7 +17,7 @@ export function configure() {
           key(value.combo, e => {
             const result = value.call(this.viewModel, e);
             // return true to skip preventDefault
-            if (!result) {
+            if (result !== true) {
               e.preventDefault && e.preventDefault();
             }
           });

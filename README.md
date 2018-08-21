@@ -38,7 +38,7 @@ export class MyVm {
   attached() {
     key('ctrl+f, command+f', e => {
       // return true if you want to skip preventDefault
-      if (!this.findIt(e)) e.preventDefault();
+      if (true !== this.findIt(e)) e.preventDefault();
     })
   }
 
