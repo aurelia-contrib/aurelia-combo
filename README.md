@@ -2,13 +2,15 @@
 
 An Aurelia plugin for easy keyboard combo short-cuts.
 
+# Install Package
+
+`npm i aurelia-combo` or `yarn add aurelia-combo`
+
+> For aurelia-cli users, please make sure to use aurelia-cli version `1.0.0-beta.1` or above.
 
 ## Usage
 
-* with aurelia-cli `au install aurelia-combo`.
-* with webpack `npm i aurelia-combo`.
-
-In your app main.js file
+In your main.js file
 
 ```js
 aurelia.use.plugin(PLATFORM.moduleName('aurelia-combo'));
