@@ -37,7 +37,9 @@ export function transpilePlugin() {
   return gulp.src(project.plugin.source.js)
     .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
     // .pipe(sourcemaps.init())
-    .pipe(babel()) // use default cjs format
+    .pipe(babel({
+      plugins: [['@babel/plugin-transform-modules-commonjs', {loose: true}]]
+    })) // use default cjs format
     // .pipe(sourcemaps.write())
     .pipe(gulp.dest(project.plugin.output));
 }
