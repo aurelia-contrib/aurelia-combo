@@ -64,7 +64,7 @@
     "start": "au run",
     "prepare": "npm run build",
     "pretest": "au lint",
-    "preversion": "au test",
+    "preversion": "npm run test",
     "version": "standard-changelog && git add CHANGELOG.md",
     "postversion": "git push && git push --tags && npm publish",
     "test": "au test"
