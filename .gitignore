@@ -29,7 +29,8 @@ node_modules
 
 # Compiled files
 /scripts
-/dist
 /src/environment.js
-/package-lock.json
-/yarn.lock
+/src/environment.ts
+/dist
+/test/coverage-jest
+/test/coverage-karma

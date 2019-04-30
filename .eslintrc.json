@@ -1,21 +1,8 @@
 {
-  "root": true,
-  "extends": "eslint:recommended",
-  "parser": "babel-eslint",
+  "extends": "./node_modules/aurelia-tools/.eslintrc.json",
   "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module",
     "ecmaFeatures": {
       "legacyDecorators": true
     }
-  },
-  "rules": {
-    "getter-return": 0
-  },
-  "env": {
-    "es6": true,
-    "browser": true,
-    "node": true,
-    "jasmine": true
   }
 }

@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import {combo} from './resources/index';
+import {combo} from 'resources/index';
 
 export class App {
   constructor() {

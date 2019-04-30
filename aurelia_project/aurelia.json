@@ -1,15 +1,73 @@
 {
   "name": "aurelia-combo",
-  "type": "project:application",
-  "bundler": {
-    "id": "cli",
-    "displayName": "Aurelia-CLI"
+  "type": "project:plugin",
+  "paths": {
+    "root": "dev-app",
+    "resources": "../src",
+    "elements": "../src/elements",
+    "attributes": "../src/attributes",
+    "valueConverters": "../src/value-converters",
+    "bindingBehaviors": "../src/binding-behaviors"
+  },
+  "transpiler": {
+    "id": "babel",
+    "fileExtension": ".js",
+    "options": {
+      "plugins": [
+        [
+          "@babel/plugin-transform-modules-amd",
+          {
+            "loose": true
+          }
+        ]
+      ]
+    },
+    "source": [
+      "dev-app/**/*.js",
+      "src/**/*.js"
+    ]
+  },
+  "plugin": {
+    "source": {
+      "js": "src/**/*.js",
+      "css": "src/**/*.css",
+      "html": "src/**/*.html",
+      "json": "src/**/*.json"
+    }
+  },
+  "markupProcessor": {
+    "source": [
+      "dev-app/**/*.html",
+      "src/**/*.html"
+    ]
+  },
+  "cssProcessor": {
+    "source": [
+      "dev-app/**/*.css",
+      "src/**/*.css"
+    ]
+  },
+  "jsonProcessor": {
+    "source": [
+      "dev-app/**/*.json",
+      "src/**/*.json"
+    ]
+  },
+  "unitTestRunner": {
+    "source": "test/unit/**/*.js"
+  },
+  "testFramework": {
+    "id": "jasmine"
+  },
+  "platform": {
+    "port": 9000,
+    "index": "index.html",
+    "baseDir": ".",
+    "output": "scripts"
   },
   "build": {
     "targets": [
       {
-        "id": "web",
-        "displayName": "Web",
         "port": 9000,
         "index": "index.html",
         "baseDir": ".",
@@ -19,18 +77,20 @@
     "options": {
       "minify": "stage & prod",
       "sourcemaps": "dev & stage",
+      "rev": false,
       "cache": "dev & stage"
     },
     "bundles": [
       {
         "name": "app-bundle.js",
         "source": [
-          "**/*.{js,css,html}"
+          "**/*.{js,json,css,html}"
         ]
       },
       {
         "name": "vendor-bundle.js",
         "prepend": [
+          "node_modules/promise-polyfill/dist/polyfill.min.js",
           "node_modules/requirejs/require.js"
         ],
         "dependencies": [
@@ -56,75 +116,9 @@
             ".html",
             ".css"
           ],
-          "stub": true
+          "stub": false
         }
       ]
     }
-  },
-  "platform": {
-    "id": "web",
-    "displayName": "Web",
-    "port": 9000,
-    "index": "index.html",
-    "baseDir": ".",
-    "output": "scripts"
-  },
-  "transpiler": {
-    "id": "babel",
-    "displayName": "Babel",
-    "fileExtension": ".js",
-    "options": {
-      "plugins": [
-        ["@babel/plugin-transform-modules-amd", {"loose": true}]
-      ]
-    },
-    "source": "src/**/*.js"
-  },
-  "markupProcessor": {
-    "id": "none",
-    "displayName": "None",
-    "fileExtension": ".html",
-    "source": "src/**/*.html"
-  },
-  "cssProcessor": {
-    "id": "none",
-    "displayName": "None",
-    "fileExtension": ".css",
-    "source": "src/**/*.css"
-  },
-  "editor": {
-    "id": "sublime",
-    "displayName": "Sublime"
-  },
-  "unitTestRunners": [
-    {
-      "id": "karma",
-      "displayName": "Karma",
-      "source": "test/unit/**/*.js"
-    }
-  ],
-  "integrationTestRunner": {
-    "id": "none",
-    "displayName": "None"
-  },
-  "paths": {
-    "root": "src",
-    "resources": "resources",
-    "elements": "resources/elements",
-    "attributes": "resources/attributes",
-    "valueConverters": "resources/value-converters",
-    "bindingBehaviors": "resources/binding-behaviors"
-  },
-  "testFramework": {
-    "id": "jasmine",
-    "displayName": "Jasmine"
-  },
-  "plugin": {
-    "source": {
-      "js": "src/resources/**/*.js",
-      "html": "src/resources/**/*.html",
-      "css": "src/resources/**/*.css"
-    },
-    "output": "dist"
   }
 }

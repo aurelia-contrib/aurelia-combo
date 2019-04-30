@@ -1,7 +1,6 @@
-'use strict';
 const path = require('path');
 const project = require('./aurelia_project/aurelia.json');
-const karmaConfig = project.unitTestRunners.find(x => x.id === 'karma');
+const karmaConfig = project.unitTestRunner;
 
 let testSrc = [
   { pattern: karmaConfig.source, included: false },
@@ -34,7 +33,7 @@ module.exports = function(config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['PhantomJS'], // ['Chrome'],
+    browsers: ['Chrome'],
     singleRun: false,
     // client.args must be a array of string.
     // Leave 'aurelia-root', project.paths.root in this order so we can find

@@ -1,5 +1,5 @@
 import {createAssertionQueue} from './utils';
-import {configure, combo} from '../../src/resources/index';
+import {configure, combo} from 'resources/index';
 import {StageComponent} from 'aurelia-testing';
 import {bootstrap} from 'aurelia-bootstrapper';
 import {inlineView} from 'aurelia-framework';
