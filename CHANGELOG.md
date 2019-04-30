@@ -1,3 +1,12 @@
+# [1.0.0](https://github.com/aurelia-contrib/aurelia-combo/compare/v0.3.0...v1.0.0) (2019-04-30)
+
+
+### Bug Fixes
+
+* fix linting error ([3ef2f60](https://github.com/aurelia-contrib/aurelia-combo/commit/3ef2f60))
+
+
+
 # [0.3.0](https://github.com/aurelia-contrib/aurelia-combo/compare/v0.2.2...v0.3.0) (2019-04-30)
 
 
