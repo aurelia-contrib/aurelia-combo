@@ -45,7 +45,7 @@ export function configure() {
 export function combo(...shortcuts) {
   if (!shortcuts || !shortcuts.length) return;
 
-  return function(target, key, descriptor) {
+  return function(target, _key, descriptor) {
     if (typeof descriptor.value !== 'function') {
       throw new Error('@combo(...) can only decorate a method');
     }
