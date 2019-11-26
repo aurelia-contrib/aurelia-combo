@@ -1,7 +1,13 @@
 import {Controller} from 'aurelia-templating';
 import key from 'keymaster';
 
+let patched = false;
+
 export function configure() {
+  // Only does monkey patch once.
+  if (patched) return;
+  patched = true;
+
   const attached = Controller.prototype.attached;
   const detached = Controller.prototype.detached;
 
