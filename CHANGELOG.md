@@ -1,3 +1,12 @@
+## [1.0.4](https://github.com/aurelia-contrib/aurelia-combo/compare/v1.0.3...v1.0.4) (2019-12-03)
+
+
+### Bug Fixes
+
+* bundle latest keymaster source code to get unpublished fixes (like bug in unbind) ([3a2d963](https://github.com/aurelia-contrib/aurelia-combo/commit/3a2d963e20bfb9b383c6af268dad9d2883e29efb))
+
+
+
 ## [1.0.3](https://github.com/aurelia-contrib/aurelia-combo/compare/v1.0.2...v1.0.3) (2019-11-27)
 
 

@@ -1,7 +1,7 @@
 {
   "name": "aurelia-combo",
   "description": "An Aurelia plugin for easy keyboard combo short-cuts",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "keywords": [
     "aurelia",
     "keymaster",
