@@ -17,9 +17,6 @@
   },
   "license": "MIT",
   "author": "Chunpeng Huo",
-  "dependencies": {
-    "keymaster": "^1.6.2"
-  },
   "devDependencies": {
     "aurelia-bootstrapper": "^2.3.3",
     "aurelia-animator-css": "^1.0.4",

@@ -1,5 +1,5 @@
 import {Controller} from 'aurelia-templating';
-import key from 'keymaster';
+import key from './keymaster';
 
 let patched = false;
 
