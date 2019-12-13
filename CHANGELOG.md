@@ -1,3 +1,12 @@
+## [1.0.5](https://github.com/aurelia-contrib/aurelia-combo/compare/v1.0.4...v1.0.5) (2019-12-13)
+
+
+### Bug Fixes
+
+* fix issue with app compiled into native class syntax ([b392ec9](https://github.com/aurelia-contrib/aurelia-combo/commit/b392ec9fc3bc4378171fad4218d01d2d23766380))
+
+
+
 ## [1.0.4](https://github.com/aurelia-contrib/aurelia-combo/compare/v1.0.3...v1.0.4) (2019-12-03)
 
 
