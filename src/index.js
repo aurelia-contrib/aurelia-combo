@@ -17,18 +17,15 @@ export function configure() {
     attached.call(this);
 
     if (!isAttached) {
-      for (const name in this.viewModel) {
-        const value = this.viewModel[name];
-        if (typeof value === 'function' && value.combo) {
-          key(value.combo, e => {
-            const result = value.call(this.viewModel, e);
-            // return true to skip preventDefault
-            if (result !== true) {
-              e.preventDefault && e.preventDefault();
-            }
-          });
-        }
-      }
+      eachMethod(this.viewModel, value => {
+        key(value.combo, e => {
+          const result = value.call(this.viewModel, e);
+          // return true to skip preventDefault
+          if (result !== true) {
+            e.preventDefault && e.preventDefault();
+          }
+        });
+      });
     }
   };
 
@@ -38,14 +35,27 @@ export function configure() {
     detached.call(this);
 
     if (isAttached) {
-      for (const name in this.viewModel) {
-        const value = this.viewModel[name];
-        if (typeof value === 'function' && value.combo) {
-          key.unbind(value.combo);
-        }
-      }
+      eachMethod(this.viewModel, value => {
+        key.unbind(value.combo);
+      });
     }
   };
+}
+
+function eachMethod(obj, callback) {
+  const names = Object.getOwnPropertyNames(obj);
+  for (const name of names) {
+    if (name !== 'constructor') {
+      const descriptor = Object.getOwnPropertyDescriptor(obj, name);
+      if (descriptor && typeof descriptor.value === 'function' && descriptor.value.combo) {
+        callback(descriptor.value);
+      }
+    }
+  }
+  const proto = Object.getPrototypeOf(obj);
+  if (proto) {
+    return eachMethod(proto, callback);
+  }
 }
 
 export function combo(...shortcuts) {
