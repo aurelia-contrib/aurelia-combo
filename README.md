@@ -1,4 +1,4 @@
-# `aurelia-combo` [![Build Status](https://travis-ci.org/aurelia-contrib/aurelia-combo.svg?branch=master)](https://travis-ci.org/aurelia-contrib/aurelia-combo)
+# aurelia-combo ![CI](https://github.com/aurelia-contrib/aurelia-combo/workflows/CI/badge.svg)
 
 An Aurelia plugin for easy keyboard combo short-cuts.
 
