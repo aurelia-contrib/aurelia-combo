@@ -11,6 +11,8 @@ export function configure() {
   const attached = Controller.prototype.attached;
   const detached = Controller.prototype.detached;
 
+  key.filter = () => true; // disable Keymaster's built-in filter
+
   Controller.prototype.attached = function() {
     // attached() gets called twice but only does things when isAttached is false
     let isAttached = this.isAttached;
