@@ -21,6 +21,10 @@ export function configure() {
     if (!isAttached) {
       eachMethod(this.viewModel, value => {
         key(value.combo.shortcuts, e => {
+          if (!value.combo.runInsideInputs && !defaultKeymasterFilter(e)) {
+            return true;
+          }
+          
           const result = value.call(this.viewModel, e);
           // return true to skip preventDefault
           if (result !== true) {
@@ -44,6 +48,11 @@ export function configure() {
   };
 }
 
+function defaultKeymasterFilter(event) {
+  const tagName = (event.target || event.srcElement).tagName;
+  return !(tagName == 'INPUT' || tagName == 'SELECT' || tagName == 'TEXTAREA');
+}
+
 function eachMethod(obj, callback) {
   const names = Object.getOwnPropertyNames(obj);
   for (const name of names) {
@@ -60,7 +69,7 @@ function eachMethod(obj, callback) {
   }
 }
 
-export function combo(shortcuts) {
+export function combo(shortcuts, runInsideInputs) {
   if (!shortcuts || !shortcuts.length) return;
 
   return function(target, _key, descriptor) {
@@ -69,7 +78,8 @@ export function combo(shortcuts) {
     }
 
     descriptor.value.combo = {
-      shortcuts
+      shortcuts,
+      runInsideInputs
     };
 
     return descriptor;
