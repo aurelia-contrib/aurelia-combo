@@ -20,7 +20,7 @@ export function configure() {
 
     if (!isAttached) {
       eachMethod(this.viewModel, value => {
-        key(value.combo, e => {
+        key(value.combo.shortcuts, e => {
           const result = value.call(this.viewModel, e);
           // return true to skip preventDefault
           if (result !== true) {
@@ -38,7 +38,7 @@ export function configure() {
 
     if (isAttached) {
       eachMethod(this.viewModel, value => {
-        key.unbind(value.combo);
+        key.unbind(value.combo.shortcuts);
       });
     }
   };
@@ -60,7 +60,7 @@ function eachMethod(obj, callback) {
   }
 }
 
-export function combo(...shortcuts) {
+export function combo(shortcuts) {
   if (!shortcuts || !shortcuts.length) return;
 
   return function(target, _key, descriptor) {
@@ -68,7 +68,10 @@ export function combo(...shortcuts) {
       throw new Error('@combo(...) can only decorate a method');
     }
 
-    descriptor.value.combo = shortcuts.join(', ');
+    descriptor.value.combo = {
+      shortcuts
+    };
+
     return descriptor;
   };
 }
