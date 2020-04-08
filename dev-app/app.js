@@ -15,4 +15,14 @@ export class App {
   copyIt() {
     console.log('copyIt');
   }
+
+  @combo('e')
+  editIt() {
+    console.log('editIt');
+  }
+
+  @combo('ctrl+x')
+  cutIt() {
+    console.log('cutIt');
+  }
 }
