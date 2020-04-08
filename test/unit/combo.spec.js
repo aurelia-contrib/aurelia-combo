@@ -43,7 +43,7 @@ const results = [];
 
 @inlineView('<template></template>')
 class ToTest {
-  @combo('ctrl+f', 'command+f')
+  @combo('ctrl+f, command+f')
   findIt() {
     results.push('findIt');
   }
