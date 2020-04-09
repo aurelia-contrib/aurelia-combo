@@ -27,7 +27,7 @@ function keydown(code, modifiers) {
   if (modifiers && modifiers.length > 0) {
     for (const i in modifiers) event[modifierMap[modifiers[i]]] = true;
   }
-  document.dispatchEvent(event);
+  document.activeElement.dispatchEvent(event);
 }
 
 function keyup(code) {
@@ -43,7 +43,7 @@ const results = [];
 
 @inlineView('<template></template>')
 class ToTest {
-  @combo('ctrl+f', 'command+f')
+  @combo('ctrl+f', 'command+f', true)
   findIt() {
     results.push('findIt');
   }
@@ -66,11 +66,14 @@ describe('combo', () => {
   });
 
   it('responds to keyboard shortcut', done => {
-    const model = {show: true};
+    const model = {show: true, testInput: null};
 
     component = StageComponent
       .withResources([ToTest])
-      .inView(`<to-test if.bind="show"></to-test>`)
+      .inView(`
+        <to-test if.bind="show"></to-test>
+        <input ref="testInput" />
+      `)
       .boundTo(model);
 
     component.create(bootstrap).then(() => {
@@ -99,6 +102,24 @@ describe('combo', () => {
 
       nq(() => {
         expect(results).toEqual(['findIt', 'findIt', 'copyIt']);
+        // focus the test input
+        model.testInput.focus();
+      });
+
+      nq(() => {
+        expect(model.testInput).toBe(document.activeElement);
+        // command+c (should not register; input is focused)
+        keydown(KEYS.command); keydown(67, [KEYS.command]); keyup(67); keyup(KEYS.command);
+      });
+
+      nq(() => {
+        expect(results).toEqual(['findIt', 'findIt', 'copyIt']);
+        // command+f (should register; runInsideInputs flag is set)
+        keydown(KEYS.command); keydown(70, [KEYS.command]); keyup(70); keyup(KEYS.command);
+      });
+
+      nq(() => {
+        expect(results).toEqual(['findIt', 'findIt', 'copyIt', 'findIt']);
         // turn off
         model.show = false;
       });
@@ -110,7 +131,7 @@ describe('combo', () => {
 
       nq(() => {
         // no more trigger after detached
-        expect(results).toEqual(['findIt', 'findIt', 'copyIt']);
+        expect(results).toEqual(['findIt', 'findIt', 'copyIt', 'findIt']);
 
         done();
       });
