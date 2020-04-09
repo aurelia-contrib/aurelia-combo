@@ -34,7 +34,7 @@ function keyup(code) {
   var event = document.createEvent('Event');
   event.initEvent('keyup', true, true);
   event.keyCode = code;
-  document.dispatchEvent(event);
+  document.activeElement.dispatchEvent(event);
 }
 
 const nq = createAssertionQueue();
