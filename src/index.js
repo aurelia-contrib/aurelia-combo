@@ -23,7 +23,7 @@ export function configure() {
       eachMethod(this.viewModel, value => {
         key(value.combo.shortcuts, e => {
           if (!value.combo.runInsideInputs && !defaultKeymasterFilter(e)) {
-            return true;
+            return;
           }
 
           const result = value.call(this.viewModel, e);
