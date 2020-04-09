@@ -69,8 +69,13 @@ function eachMethod(obj, callback) {
   }
 }
 
-export function combo(shortcuts, runInsideInputs) {
+export function combo(...shortcuts) {
   if (!shortcuts || !shortcuts.length) return;
+
+  let runInsideInputs = false;
+  if (shortcuts.length && typeof shortcuts[shortcuts.length - 1] === 'boolean') {
+    runInsideInputs = shortcuts.pop();
+  }
 
   return function(target, _key, descriptor) {
     if (typeof descriptor.value !== 'function') {
@@ -78,7 +83,7 @@ export function combo(shortcuts, runInsideInputs) {
     }
 
     descriptor.value.combo = {
-      shortcuts,
+      shortcuts: shortcuts.join(','),
       runInsideInputs
     };
 

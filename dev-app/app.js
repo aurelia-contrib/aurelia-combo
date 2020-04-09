@@ -6,7 +6,7 @@ export class App {
     this.message = 'Hello World!';
   }
 
-  @combo('ctrl+f, command+f', true)
+  @combo('ctrl+f', 'command+f', true)
   findIt() {
     console.log('findIt');
   }
