@@ -11,6 +11,7 @@ export function configure() {
   const attached = Controller.prototype.attached;
   const detached = Controller.prototype.detached;
 
+  const defaultKeymasterFilter = key.filter;
   key.filter = () => true; // disable Keymaster's built-in filter
 
   Controller.prototype.attached = function() {
@@ -46,11 +47,6 @@ export function configure() {
       });
     }
   };
-}
-
-function defaultKeymasterFilter(event) {
-  const tagName = (event.target || event.srcElement).tagName;
-  return !(tagName === 'INPUT' || tagName === 'SELECT' || tagName === 'TEXTAREA');
 }
 
 function eachMethod(obj, callback) {
