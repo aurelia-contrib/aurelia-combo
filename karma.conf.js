@@ -38,6 +38,11 @@ module.exports = function(config) {
       ChromeHeadlessNoSandbox: {
         base: 'ChromeHeadless',
         flags: ['--no-sandbox']
+      },
+      Chrome_with_debugging: {
+        base: 'Chrome',
+        flags: ['--remote-debugging-port=9222'],
+        debug: true
       }
     },
     singleRun: false,

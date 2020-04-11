@@ -11,6 +11,9 @@ export function configure() {
   const attached = Controller.prototype.attached;
   const detached = Controller.prototype.detached;
 
+  const defaultKeymasterFilter = key.filter;
+  key.filter = () => true; // disable Keymaster's built-in filter
+
   Controller.prototype.attached = function() {
     // attached() gets called twice but only does things when isAttached is false
     let isAttached = this.isAttached;
@@ -18,7 +21,11 @@ export function configure() {
 
     if (!isAttached) {
       eachMethod(this.viewModel, value => {
-        key(value.combo, e => {
+        key(value.combo.shortcuts, e => {
+          if (!value.combo.runInsideInputs && !defaultKeymasterFilter(e)) {
+            return;
+          }
+
           const result = value.call(this.viewModel, e);
           // return true to skip preventDefault
           if (result !== true) {
@@ -36,7 +43,7 @@ export function configure() {
 
     if (isAttached) {
       eachMethod(this.viewModel, value => {
-        key.unbind(value.combo);
+        key.unbind(value.combo.shortcuts);
       });
     }
   };
@@ -61,12 +68,21 @@ function eachMethod(obj, callback) {
 export function combo(...shortcuts) {
   if (!shortcuts || !shortcuts.length) return;
 
+  let runInsideInputs = false;
+  if (shortcuts.length && typeof shortcuts[shortcuts.length - 1] === 'boolean') {
+    runInsideInputs = shortcuts.pop();
+  }
+
   return function(target, _key, descriptor) {
     if (typeof descriptor.value !== 'function') {
       throw new Error('@combo(...) can only decorate a method');
     }
 
-    descriptor.value.combo = shortcuts.join(', ');
+    descriptor.value.combo = {
+      shortcuts: shortcuts.join(','),
+      runInsideInputs
+    };
+
     return descriptor;
   };
 }
