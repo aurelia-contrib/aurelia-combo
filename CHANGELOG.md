@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/aurelia-contrib/aurelia-combo/compare/v1.0.5...v1.1.0) (2020-04-11)
+
+
+### Features
+
+* add option to support events from input and textarea ([74d34be](https://github.com/aurelia-contrib/aurelia-combo/commit/74d34beb7742ee7292e09cdcec4322a91f233a78))
+
+
+
 ## [1.0.5](https://github.com/aurelia-contrib/aurelia-combo/compare/v1.0.4...v1.0.5) (2019-12-13)
 
 
