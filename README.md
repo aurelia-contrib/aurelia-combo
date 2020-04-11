@@ -6,8 +6,6 @@ An Aurelia plugin for easy keyboard combo short-cuts.
 
 `npm i aurelia-combo` or `yarn add aurelia-combo`
 
-> For aurelia-cli users, please make sure to use aurelia-cli version `1.0.0-beta.1` or above.
-
 ## Usage
 
 In your main.js file
@@ -52,6 +50,19 @@ export class MyVm {
     console.log('findIt');
   }
 }
+```
+
+### Inside input, select or textarea
+
+By default, keymaster ignores all keyboard events originating from `<input>`, `<select>`, and `<textarea>` elements. To enable short-cuts from `<input>` and the other two elements, pass in an optional boolean option to enable it.
+
+```js
+// pass true at the end of arguments,
+// to enable ctrl+f inside <input>.
+@combo('ctrl+f', 'command+f', true)
+
+// pass true at the end of arguments.
+@combo('ctrl+c, command+c', true)
 ```
 
 ## Notes
