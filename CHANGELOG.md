@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/aurelia-contrib/aurelia-combo/compare/v1.1.0...v1.1.1) (2020-04-13)
+
+
+### Bug Fixes
+
+* update TypeScript definition to match the new argument ([e1393bf](https://github.com/aurelia-contrib/aurelia-combo/commit/e1393bf3b2f1ca8d291e75c475a1bf8b75105d20))
+
+
+
 # [1.1.0](https://github.com/aurelia-contrib/aurelia-combo/compare/v1.0.5...v1.1.0) (2020-04-11)
 
 
