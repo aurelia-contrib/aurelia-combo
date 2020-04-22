@@ -213,7 +213,13 @@ function getPressedKeyCodes() {
 function filter(event){
   var tagName = (event.target || event.srcElement).tagName;
   // ignore keypressed in any elements that support keyboard data input
-  return !(tagName == 'INPUT' || tagName == 'SELECT' || tagName == 'TEXTAREA');
+  if (tagName === 'INPUT' || tagName === 'SELECT' || tagName === 'TEXTAREA') return false;
+  if (event.keyCode === 13 || event.keyCode === 32) {
+    // When enter or space is issued on button or anchor, let browser
+    // to do its default click handler.
+    if (tagName === 'BUTTON' || tagName === 'A') return false;
+  }
+  return true;
 }
 
 // initialize key.<modifier> to false

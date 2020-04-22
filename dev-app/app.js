@@ -25,4 +25,22 @@ export class App {
   cutIt() {
     console.log('cutIt');
   }
+
+  @combo('enter')
+  globalEnter() {
+    console.log('globalEnter');
+  }
+
+  @combo('space')
+  globalSpace() {
+    console.log('globalSpace');
+  }
+
+  clickOnButton() {
+    console.log('clickOnButton');
+  }
+
+  focusButton() {
+    this.btn.focus();
+  }
 }

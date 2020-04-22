@@ -41,7 +41,7 @@ const nq = createAssertionQueue();
 
 const results = [];
 
-@inlineView('<template></template>')
+@inlineView('<template><button id="btn" click.trigger="clickOnButton()">button</button></template>')
 class ToTest {
   @combo('ctrl+f', 'command+f', true)
   findIt() {
@@ -52,10 +52,25 @@ class ToTest {
   copyIt() {
     results.push('copyIt');
   }
+
+  @combo('enter')
+  globalEnter() {
+    results.push('globalEnter');
+  }
+
+  @combo('space')
+  globalSpace() {
+    results.push('globalSpace');
+  }
+
+  clickOnButton() {
+    results.push('clickOnButton');
+  }
 }
 
 describe('combo', () => {
   let component;
+  let model;
 
   afterEach(() => {
     results.length = 0;
@@ -65,8 +80,8 @@ describe('combo', () => {
     }
   });
 
-  it('responds to keyboard shortcut', done => {
-    const model = {show: true, testInput: null};
+  beforeEach(() => {
+    model = {show: true, testInput: null};
 
     component = StageComponent
       .withResources([ToTest])
@@ -75,7 +90,9 @@ describe('combo', () => {
         <input ref="testInput" />
       `)
       .boundTo(model);
+  });
 
+  it('responds to keyboard shortcut', done => {
     component.create(bootstrap).then(() => {
       nq(() => {
         expect(results.length).toBe(0);
@@ -132,9 +149,45 @@ describe('combo', () => {
       nq(() => {
         // no more trigger after detached
         expect(results).toEqual(['findIt', 'findIt', 'copyIt', 'findIt']);
-
         done();
       });
     });
   });
+
+  // it('responds to keyboard shortcut', done => {
+  //   component.create(bootstrap).then(() => {
+  //     nq(() => {
+  //       expect(results.length).toBe(0);
+  //       // enter
+  //       keydown(13); keyup(13);
+  //     });
+
+  //     nq(() => {
+  //       expect(results).toEqual(['globalEnter']);
+  //       const btn = document.querySelector('#btn');
+  //       btn.focus();
+  //       // enter on focused button
+  //       keydown(13); keyup(13);
+  //     });
+
+  //     nq(() => {
+  //       expect(results).toEqual(['globalEnter', 'clickOnButton']);
+  //       // space on focused button
+  //       keydown(32); keyup(32);
+  //     });
+
+  //     nq(() => {
+  //       expect(results).toEqual(['globalEnter', 'clickOnButton', 'clickOnButton']);
+  //       // blur on button
+  //       document.activeElement.blur();
+  //       // space
+  //       keydown(32); keyup(32);
+  //     });
+
+  //     nq(() => {
+  //       expect(results).toEqual(['globalEnter', 'clickOnButton', 'clickOnButton', 'globalSpace']);
+  //       done();
+  //     });
+  //   });
+  // });
 });
