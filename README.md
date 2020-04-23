@@ -71,8 +71,3 @@ All short-cuts are attached globally to HTML document, the good practice is to u
 
 The unbind in detached removes all listeners for that short-cut. This means you don't want two components on screen handling same short-cut.
 
-
-## This plugin is bootstrapped by aurelia-cli
-
-https://aurelia.io/docs/plugins/write-new-plugin
-

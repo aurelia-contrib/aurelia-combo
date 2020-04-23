@@ -1,43 +1,47 @@
 /* eslint-disable no-console */
-import {combo} from 'resources/index';
+import {combo} from '../src/index';
 
 export class App {
   constructor() {
-    this.message = 'Hello World!';
+    this.logs = [];
   }
 
   @combo('ctrl+f', 'command+f', true)
   findIt() {
-    console.log('findIt');
+    this.logs.push('findIt');
   }
 
   @combo('ctrl+c, command+c', true)
   copyIt() {
-    console.log('copyIt');
+    this.logs.push('copyIt');
   }
 
   @combo('e')
   editIt() {
-    console.log('editIt');
+    this.logs.push('editIt');
   }
 
   @combo('ctrl+x')
   cutIt() {
-    console.log('cutIt');
+    this.logs.push('cutIt');
   }
 
   @combo('enter')
   globalEnter() {
-    console.log('globalEnter');
+    this.logs.push('globalEnter');
   }
 
   @combo('space')
   globalSpace() {
-    console.log('globalSpace');
+    this.logs.push('globalSpace');
+  }
+
+  resetLogs() {
+    this.logs = [];
   }
 
   clickOnButton() {
-    console.log('clickOnButton');
+    this.logs.push('clickOnButton');
   }
 
   focusButton() {

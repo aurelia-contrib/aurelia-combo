@@ -30,5 +30,10 @@
   </ul>
 
   <p>If you <button click.trigger="focusButton()">focus next button</button> and then hit space or enter key, it will only log the click, not global space/enter.</p>
-  <button ref="btn" click.trigger="clickOnButton()">button</button>
+  <button ref="btn" id="btn" tabindex="1" click.trigger="clickOnButton()">button</button>
+
+  <p>Logs: <button click.trigger="resetLogs()">reset</button></p>
+  <div id="logs" style="padding: .5rem; background-color: lightgrey;">
+    <div repeat.for="log of logs">${log}</div>
+  </div>
 </template>
