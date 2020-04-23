@@ -1,3 +1,12 @@
+## [1.1.2](https://github.com/aurelia-contrib/aurelia-combo/compare/v1.1.1...v1.1.2) (2020-04-23)
+
+
+### Bug Fixes
+
+* ignore space/enter key on focused button or anchor ([955a50c](https://github.com/aurelia-contrib/aurelia-combo/commit/955a50c61552b08b95fbf122cd905fe584ea6760))
+
+
+
 ## [1.1.1](https://github.com/aurelia-contrib/aurelia-combo/compare/v1.1.0...v1.1.1) (2020-04-13)
 
 
