@@ -8,7 +8,6 @@ describe('aurelia-combo', () => {
   it('responds to {ctrl}f', () => {
     cy.get('#logs');
     cy.get('body').type('{ctrl}f');
-    cy.wait(200);
     cy.get('#logs > div').should(divs => {
       expect(divs).to.have.length(1);
       expect(divs).to.have.text('findIt');
@@ -17,8 +16,7 @@ describe('aurelia-combo', () => {
 
   it('responds to {ctrl}f when in input', () => {
     cy.get('input').focus();
-    cy.get('body').type('{ctrl}f');
-    cy.wait(200);
+    cy.get('input').type('{ctrl}f');
     cy.get('#logs > div').should(divs => {
       expect(divs).to.have.length(1);
       expect(divs).to.have.text('findIt');
@@ -27,8 +25,7 @@ describe('aurelia-combo', () => {
 
   it('responds to {ctrl}f when in textarea', () => {
     cy.get('textarea').focus();
-    cy.get('body').type('{ctrl}f');
-    cy.wait(200);
+    cy.get('textarea').type('{ctrl}f');
     cy.get('#logs > div').should(divs => {
       expect(divs).to.have.length(1);
       expect(divs).to.have.text('findIt');
@@ -37,8 +34,7 @@ describe('aurelia-combo', () => {
 
   it('responds to {ctrl}f when in select', () => {
     cy.get('select').focus();
-    cy.get('body').type('{ctrl}f');
-    cy.wait(200);
+    cy.get('select').type('{ctrl}f');
     cy.get('#logs > div').should(divs => {
       expect(divs).to.have.length(1);
       expect(divs).to.have.text('findIt');
@@ -48,7 +44,6 @@ describe('aurelia-combo', () => {
   it('responds to {ctrl}c', () => {
     cy.get('#logs');
     cy.get('body').type('{ctrl}c');
-    cy.wait(200);
     cy.get('#logs > div').should(divs => {
       expect(divs).to.have.length(1);
       expect(divs).to.have.text('copyIt');
@@ -57,8 +52,7 @@ describe('aurelia-combo', () => {
 
   it('responds to {ctrl}c when in input', () => {
     cy.get('input').focus();
-    cy.get('body').type('{ctrl}c');
-    cy.wait(200);
+    cy.get('input').type('{ctrl}c');
     cy.get('#logs > div').should(divs => {
       expect(divs).to.have.length(1);
       expect(divs).to.have.text('copyIt');
@@ -67,8 +61,7 @@ describe('aurelia-combo', () => {
 
   it('responds to {ctrl}c when in textarea', () => {
     cy.get('textarea').focus();
-    cy.get('body').type('{ctrl}c');
-    cy.wait(200);
+    cy.get('textarea').type('{ctrl}c');
     cy.get('#logs > div').should(divs => {
       expect(divs).to.have.length(1);
       expect(divs).to.have.text('copyIt');
@@ -77,8 +70,7 @@ describe('aurelia-combo', () => {
 
   it('responds to {ctrl}c when in select', () => {
     cy.get('select').focus();
-    cy.get('body').type('{ctrl}c');
-    cy.wait(200);
+    cy.get('select').type('{ctrl}c');
     cy.get('#logs > div').should(divs => {
       expect(divs).to.have.length(1);
       expect(divs).to.have.text('copyIt');
@@ -88,7 +80,6 @@ describe('aurelia-combo', () => {
   it('responds to e', () => {
     cy.get('#logs');
     cy.get('body').type('e');
-    cy.wait(200);
     cy.get('#logs > div').should(divs => {
       expect(divs).to.have.length(1);
       expect(divs).to.have.text('editIt');
@@ -97,29 +88,25 @@ describe('aurelia-combo', () => {
 
   it('does not respond to e when in input', () => {
     cy.get('input').focus();
-    cy.get('body').type('e');
-    cy.wait(200);
+    cy.get('input').type('e');
     cy.get('#logs > div').should('have.length', 0);
   });
 
   it('does not respond to e when in textarea', () => {
     cy.get('textarea').focus();
-    cy.get('body').type('e');
-    cy.wait(200);
+    cy.get('textarea').type('e');
     cy.get('#logs > div').should('have.length', 0);
   });
 
   it('does not respond to e when in select', () => {
     cy.get('select').focus();
-    cy.get('body').type('e');
-    cy.wait(200);
+    cy.get('select').type('e');
     cy.get('#logs > div').should('have.length', 0);
   });
 
   it('responds to {ctrl}x', () => {
     cy.get('#logs');
     cy.get('body').type('{ctrl}x');
-    cy.wait(200);
     cy.get('#logs > div').should(divs => {
       expect(divs).to.have.length(1);
       expect(divs).to.have.text('cutIt');
@@ -128,22 +115,19 @@ describe('aurelia-combo', () => {
 
   it('does not respond to e when in input', () => {
     cy.get('input').focus();
-    cy.get('body').type('{ctrl}x');
-    cy.wait(200);
+    cy.get('input').type('{ctrl}x');
     cy.get('#logs > div').should('have.length', 0);
   });
 
   it('does not respond to e when in textarea', () => {
     cy.get('textarea').focus();
-    cy.get('body').type('{ctrl}x');
-    cy.wait(200);
+    cy.get('textarea').type('{ctrl}x');
     cy.get('#logs > div').should('have.length', 0);
   });
 
   it('does not respond to e when in select', () => {
     cy.get('select').focus();
-    cy.get('body').type('e');
-    cy.wait(200);
+    cy.get('select').type('e');
     cy.get('#logs > div').should('have.length', 0);
   });
 
@@ -159,7 +143,16 @@ describe('aurelia-combo', () => {
   it('responds to global enter key', () => {
     cy.get('#logs');
     cy.get('body').type('{enter}');
-    cy.wait(200);
+    cy.get('#logs > div').should(divs => {
+      expect(divs).to.have.length(1);
+      expect(divs).to.have.text('globalEnter');
+    });
+  });
+
+  it('responds to entry key when in input', () => {
+    cy.get('#logs');
+    cy.get('input').focus();
+    cy.get('input').type('{enter}');
     cy.get('#logs > div').should(divs => {
       expect(divs).to.have.length(1);
       expect(divs).to.have.text('globalEnter');
@@ -168,7 +161,6 @@ describe('aurelia-combo', () => {
 
   it('does not respond to space key on focused button', () => {
     cy.get('#btn').first().focus().type(' ');
-    cy.wait(200);
     cy.get('#logs > div').should(divs => {
       // TODO: cannot figure out how to simulate the browser default
       // click through keyboard events.
@@ -181,7 +173,6 @@ describe('aurelia-combo', () => {
 
   it('does not respond to enter key on focused button', () => {
     cy.get('#btn').first().focus().type('{enter}');
-    cy.wait(200);
     cy.get('#logs > div').should(divs => {
       // TODO: cannot figure out how to simulate the browser default
       // click through keyboard events.

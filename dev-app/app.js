@@ -26,7 +26,7 @@ export class App {
     this.logs.push('cutIt');
   }
 
-  @combo('enter')
+  @combo('enter', true)
   globalEnter() {
     this.logs.push('globalEnter');
   }

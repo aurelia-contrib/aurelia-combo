@@ -81,6 +81,7 @@ function dispatch(event) {
   }
   updateModifierKey(event);
 
+  if (!filterFocusedButton.call(this, event)) return;
   // see if we need to ignore the keypress (filter() can can be overridden)
   // by default ignore key presses if a select, textarea, or input is focused
   if(!assignKey.filter.call(this, event)) return;
@@ -214,10 +215,18 @@ function filter(event){
   var tagName = (event.target || event.srcElement).tagName;
   // ignore keypressed in any elements that support keyboard data input
   if (tagName === 'INPUT' || tagName === 'SELECT' || tagName === 'TEXTAREA') return false;
-  if (event.keyCode === 13 || event.keyCode === 32) {
-    // When enter or space is issued on button or anchor, let browser
-    // to do its default click handler.
-    if (tagName === 'BUTTON' || tagName === 'A') return false;
+  return true;
+}
+
+function filterFocusedButton(event){
+  var tagName = (event.target || event.srcElement).tagName;
+  // When enter or space is issued on button or anchor, let browser
+  // to do its default click handler.
+  if (
+    (event.keyCode === 13 || event.keyCode === 32) &&
+    (tagName === 'BUTTON' || tagName === 'A')
+  ) {
+    return false;
   }
   return true;
 }
