@@ -24,9 +24,9 @@
   "license": "MIT",
   "author": "Chunpeng Huo",
   "devDependencies": {
-    "@babel/core": "^7.9.0",
+    "@babel/core": "^7.9.6",
     "@babel/plugin-proposal-decorators": "^7.8.3",
-    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-env": "^7.9.6",
     "aurelia-bootstrapper": "^2.3.3",
     "aurelia-deps-finder": "^2.1.1",
     "aurelia-testing": "^1.0.0",
@@ -35,9 +35,9 @@
     "browser-sync": "^2.26.7",
     "connect-history-api-fallback": "^1.6.0",
     "cross-env": "^7.0.2",
-    "cypress": "^4.3.0",
+    "cypress": "^4.5.0",
     "del": "^5.1.0",
-    "eslint": "^6.8.0",
+    "eslint": "^7.0.0",
     "eslint-plugin-cypress": "^2.10.3",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
@@ -45,7 +45,7 @@
     "gulp-if": "^3.0.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-terser": "^1.2.0",
-    "standard-changelog": "^2.0.21",
+    "standard-changelog": "^2.0.24",
     "start-server-and-test": "^1.11.0"
   },
   "scripts": {
