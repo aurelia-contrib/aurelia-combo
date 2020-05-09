@@ -1,3 +1,12 @@
+## [1.1.3](https://github.com/aurelia-contrib/aurelia-combo/compare/v1.1.2...v1.1.3) (2020-05-09)
+
+
+### Bug Fixes
+
+* not skip filter of focused button ([bfdb6ae](https://github.com/aurelia-contrib/aurelia-combo/commit/bfdb6aed24796015587ff248a276e0c5222b8f0e)), closes [#6](https://github.com/aurelia-contrib/aurelia-combo/issues/6)
+
+
+
 ## [1.1.2](https://github.com/aurelia-contrib/aurelia-combo/compare/v1.1.1...v1.1.2) (2020-04-23)
 
 
