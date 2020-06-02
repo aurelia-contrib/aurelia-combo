@@ -18,7 +18,7 @@ It uses [keymaster](https://github.com/madrobby/keymaster) underneath to support
 
 > aurelia-combo has an embedded keymaster which contains unpublished fixes and additional fix on removing registered event handlers.
 
-Note @combo decorator inject piece of code into two Aurelia lifecycle callbacks: attached and detached. This means @combo only works on Aurelia custom elements or components. It doesn't work on generic JavaScript classes which has no attached/detached callbacks.
+Note @combo decorator injects piece of code into two Aurelia life-cycle callbacks: attached and detached. This means @combo only works on Aurelia custom elements or components. It doesn't work on generic JavaScript classes which has no attached/detached callbacks.
 
 ```js
 import {combo} from 'aurelia-combo';
