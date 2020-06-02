@@ -41,7 +41,8 @@ import key from 'keymaster';
 export class MyVm {
   attached() {
     key('ctrl+f, command+f', e => {
-      // return true if you want to skip preventDefault
+      // By default, preventDefault will be called for the keyboard event.
+      // User can skip the behavior by returning true from the decorated method.
       if (true !== this.findIt(e)) e.preventDefault();
     })
   }
