@@ -1,3 +1,12 @@
+## [1.1.4](https://github.com/aurelia-contrib/aurelia-combo/compare/v1.1.3...v1.1.4) (2020-06-02)
+
+
+### Bug Fixes
+
+* properly unbind event handlers ([50a51a2](https://github.com/aurelia-contrib/aurelia-combo/commit/50a51a214e548bd8b79cfbf560064a9f447b8cdf))
+
+
+
 ## [1.1.3](https://github.com/aurelia-contrib/aurelia-combo/compare/v1.1.2...v1.1.3) (2020-05-09)
 
 
