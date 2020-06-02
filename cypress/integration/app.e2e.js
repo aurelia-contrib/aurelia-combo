@@ -15,8 +15,8 @@ describe('aurelia-combo', () => {
   });
 
   it('responds to {ctrl}f when in input', () => {
-    cy.get('input').focus();
-    cy.get('input').type('{ctrl}f');
+    cy.get('input[type="text"]').focus();
+    cy.get('input[type="text"]').type('{ctrl}f');
     cy.get('#logs > div').should(divs => {
       expect(divs).to.have.length(1);
       expect(divs).to.have.text('findIt');
@@ -51,8 +51,8 @@ describe('aurelia-combo', () => {
   });
 
   it('responds to {ctrl}c when in input', () => {
-    cy.get('input').focus();
-    cy.get('input').type('{ctrl}c');
+    cy.get('input[type="text"]').focus();
+    cy.get('input[type="text"]').type('{ctrl}c');
     cy.get('#logs > div').should(divs => {
       expect(divs).to.have.length(1);
       expect(divs).to.have.text('copyIt');
@@ -87,8 +87,8 @@ describe('aurelia-combo', () => {
   });
 
   it('does not respond to e when in input', () => {
-    cy.get('input').focus();
-    cy.get('input').type('e');
+    cy.get('input[type="text"]').focus();
+    cy.get('input[type="text"]').type('e');
     cy.get('#logs > div').should('have.length', 0);
   });
 
@@ -114,8 +114,8 @@ describe('aurelia-combo', () => {
   });
 
   it('does not respond to e when in input', () => {
-    cy.get('input').focus();
-    cy.get('input').type('{ctrl}x');
+    cy.get('input[type="text"]').focus();
+    cy.get('input[type="text"]').type('{ctrl}x');
     cy.get('#logs > div').should('have.length', 0);
   });
 
@@ -151,8 +151,8 @@ describe('aurelia-combo', () => {
 
   it('responds to entry key when in input', () => {
     cy.get('#logs');
-    cy.get('input').focus();
-    cy.get('input').type('{enter}');
+    cy.get('input[type="text"]').focus();
+    cy.get('input[type="text"]').type('{enter}');
     cy.get('#logs > div').should(divs => {
       expect(divs).to.have.length(1);
       expect(divs).to.have.text('globalEnter');
@@ -180,6 +180,36 @@ describe('aurelia-combo', () => {
       // In real usage, following are expected:
       // expect(divs).to.have.length(1);
       // expect(divs).to.have.text('clickOnButton');
+    });
+  });
+
+  it('responds to q', () => {
+    cy.get('#logs');
+    cy.get('body').type('q');
+    cy.get('#logs > div').should(divs => {
+      expect(divs).to.have.length(1);
+      expect(divs).to.have.text('app q');
+    });
+
+    // turn on child node <foo>
+    cy.get('input[type="checkbox"]').check().blur();
+    cy.get('body').type('q');
+    cy.get('#logs > div').should(divs => {
+      expect(divs).to.have.length(3);
+      expect(divs[0]).to.have.text('app q');
+      expect(divs[1]).to.have.text('app q');
+      expect(divs[2]).to.have.text('foo q');
+    });
+
+    // turn off child node <foo>
+    cy.get('input[type="checkbox"]').uncheck().blur();
+    cy.get('body').type('q');
+    cy.get('#logs > div').should(divs => {
+      expect(divs).to.have.length(4);
+      expect(divs[0]).to.have.text('app q');
+      expect(divs[1]).to.have.text('app q');
+      expect(divs[2]).to.have.text('foo q');
+      expect(divs[3]).to.have.text('app q');
     });
   });
 });

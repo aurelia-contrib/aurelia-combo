@@ -2,8 +2,16 @@
 import {combo} from '../src/index';
 
 export class App {
-  constructor() {
-    this.logs = [];
+  enabled = false;
+  logs = [];
+
+  afterQ(log) {
+    this.logs.push(log);
+  }
+
+  @combo('q')
+  hitQ() {
+    this.logs.push('app q');
   }
 
   @combo('ctrl+f', 'command+f', true)

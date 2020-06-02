@@ -32,7 +32,8 @@ var k,
   code = function(x){
     return _MAP[x] || x.toUpperCase().charCodeAt(0);
   },
-  _downKeys = [];
+  _downKeys = [],
+  counter = 0;
 
 for(k=1;k<20;k++) _MAP['f'+k] = 111+k;
 
@@ -139,7 +140,7 @@ function resetModifiers() {
 
 // parse and assign shortcut
 function assignKey(key, scope, method){
-  var keys, mods;
+  var keys, mods, id, assigned = [];
   keys = getKeys(key);
   if (method === undefined) {
     method = scope;
@@ -160,40 +161,25 @@ function assignKey(key, scope, method){
     key = code(key);
     // ...store handler
     if (!(key in _handlers)) _handlers[key] = [];
-    _handlers[key].push({ shortcut: keys[i], scope: scope, method: method, key: keys[i], mods: mods });
+    id = counter++;
+    _handlers[key].push({id: id, shortcut: keys[i], scope: scope, method: method, key: keys[i], mods: mods });
+    assigned.push({key: key, id: id});
+  }
+  return function() {
+    var i;
+    for (i = 0; i < assigned.length; i++) {
+       dispose(assigned[i].key, assigned[i].id);
+    }
   }
 };
 
-// unbind all handlers for given key in current scope
-function unbindKey(key, scope) {
-  var multipleKeys, keys,
-    mods = [],
-    i, j, obj;
-
-  multipleKeys = getKeys(key);
-
-  for (j = 0; j < multipleKeys.length; j++) {
-    keys = multipleKeys[j].split('+');
-
-    if (keys.length > 1) {
-      mods = getMods(keys);
-    }
-
-    key = keys[keys.length - 1];
-    key = code(key);
-
-    if (scope === undefined) {
-      scope = getScope();
-    }
-    if (!_handlers[key]) {
-      return;
-    }
-    for (i = 0; i < _handlers[key].length; i++) {
-      obj = _handlers[key][i];
-      // only clear handlers if correct scope and mods match
-      if (obj.scope === scope && compareArray(obj.mods, mods)) {
-        _handlers[key][i] = {};
-      }
+// dipose assigned key
+function dispose(key, id) {
+  var i, arr = _handlers[key];
+  for (i = 0; i < arr.length; i++) {
+    if (arr[i].id === id) {
+      arr.splice(i, 1);
+      break;
     }
   }
 };
@@ -292,6 +278,5 @@ assignKey.deleteScope = deleteScope;
 assignKey.filter = filter;
 assignKey.isPressed = isPressed;
 assignKey.getPressedKeyCodes = getPressedKeyCodes;
-assignKey.unbind = unbindKey;
 
 export default assignKey;

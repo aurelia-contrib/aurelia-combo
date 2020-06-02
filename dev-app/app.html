@@ -1,8 +1,12 @@
 <template>
+  <require from="./foo"></require>
   <h1>${message}</h1>
+  <label><input type="checkbox" checked.bind="enabled"> Enable "q"</label>
+
+  <foo if.bind="enabled" action.call="afterQ(log)"></foo>
 
   <div>
-    <input placeholder="Input" />
+    <input type="text" placeholder="Input" />
   </div>
 
   <div>

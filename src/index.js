@@ -21,7 +21,7 @@ export function configure() {
 
     if (!isAttached) {
       eachMethod(this.viewModel, value => {
-        key(value.combo.shortcuts, e => {
+        value.combo.dispose = key(value.combo.shortcuts, e => {
           if (!value.combo.runInsideInputs && !defaultKeymasterFilter(e)) {
             return;
           }
@@ -43,7 +43,10 @@ export function configure() {
 
     if (isAttached) {
       eachMethod(this.viewModel, value => {
-        key.unbind(value.combo.shortcuts);
+        if (value.combo.dispose) {
+          value.combo.dispose();
+          delete value.combo.dispose;
+        }
       });
     }
   };
