@@ -16,6 +16,10 @@ aurelia.use.plugin(PLATFORM.moduleName('aurelia-combo'));
 
 It uses [keymaster](https://github.com/madrobby/keymaster) underneath to support keyboard short-cut. Read it to understand the supported short-cut format.
 
+> aurelia-combo has an embedded keymaster which contains unpublished fixes and additional fix on removing registered event handlers.
+
+Note @combo decorator inject piece of code into two Aurelia lifecycle callbacks: attached and detached. This means @combo only works on Aurelia custom elements or components. It doesn't work on generic JavaScript classes which has no attached/detached callbacks.
+
 ```js
 import {combo} from 'aurelia-combo';
 export class MyVm {
@@ -64,10 +68,3 @@ By default, keymaster ignores all keyboard events originating from `<input>`, `<
 // pass true at the end of arguments.
 @combo('ctrl+c, command+c', true)
 ```
-
-## Notes
-
-All short-cuts are attached globally to HTML document, the good practice is to use `@combo` on component loaded by router.
-
-The unbind in detached removes all listeners for that short-cut. This means you don't want two components on screen handling same short-cut.
-
