@@ -68,3 +68,7 @@ By default, keymaster ignores all keyboard events originating from `<input>`, `<
 // pass true at the end of arguments.
 @combo('ctrl+c, command+c', true)
 ```
+
+## License
+
+MIT.
